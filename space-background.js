@@ -20,7 +20,7 @@ const cursor = {
     y: pseudo_canvas_height / 2,
 }
 
-const spaceship_sprite_url = 'spaceship1.png'
+const spaceship_sprite_url = 'spaceship.png'
 let spaceship_img = null
 
 const planet_texture_urls = ['planet0.png', 'planet1.png']
