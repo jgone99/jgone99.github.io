@@ -119,6 +119,8 @@ const $slider_dialog = document.getElementById('slider-dialog')
 
 window.addEventListener("mousemove", handleMouseMove)
 window.addEventListener("resize", handleResize)
+window.addEventListener("blur", stopAnimation);
+window.addEventListener("focus", startAnimation);
 window.addEventListener("load", () => {
     const $main = document.getElementById('main-content')
     $stars.classList.replace('disabled', 'enabled')
@@ -158,9 +160,15 @@ document.getElementById('pixel-checkbox').onclick = (e) => {
     else {
         resizePseudoCanvas(1)
     }
-    console.log(CANVAS_SCALE)
-
 }
+
+document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+        stopAnimation()
+    } else {
+        startAnimation()
+    }
+});
 
 // function calls
 
@@ -398,6 +406,11 @@ function handleResize(e) {
     WINDOW_H = window.innerHeight
     pseudo_canvas_width = WINDOW_W * CANVAS_SCALE
     pseudo_canvas_height = WINDOW_H * CANVAS_SCALE
+    $canvas.width = pseudo_canvas_width
+    $canvas.height = pseudo_canvas_height
+    $canvas.style.width = WINDOW_W + 'px'
+    $canvas.style.height = WINDOW_H + 'px'
+    ctx.imageSmoothingEnabled = false
 
     Object.values(planet_data).forEach((planet) => {
         planet.x = pseudo_canvas_width * planet.x_mult

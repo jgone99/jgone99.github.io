@@ -33,16 +33,16 @@
     <canvas id="background-canvas" class="disabled transition-opacity duration-1500 delay-1000"></canvas>
 
     <div id="main-content" class="disabled duration-2000 transition-opacity delay-2000">
-        <nav class="fixed top-0 w-full flex justify-center gap-20 z-50 bg-[#0f0f0f]/90 p-4">
+        <nav class="fixed top-0 w-full flex justify-center gap-5 md:gap-20 z-50 bg-[#0f0f0f]/90 p-4">
             <a href="#about" class="hover:text-teal-300">About</a>
             <a href="#projects" class="hover:text-teal-300">Projects</a>
             <a href="#skills" class="hover:text-teal-300">Skills</a>
             <a href="#contact" class="hover:text-teal-300">Contact</a>
         </nav>
 
-        <div id="animation-controls" class="flex flex-col items-end z-50 fixed end-5">
+        <div id="animation-controls" class="opacity-100 flex flex-col items-end z-50 fixed end-5">
             <div id="animation-controls-btns"
-                class="flex mt-15 px-2 py-4 gap-4 w-fit border rounded-md border-teal-300">
+                class="flex flex-col-reverse md:flex-row mt-15 px-2 py-4 gap-8 md:gap-4 w-fit border rounded-md border-teal-300">
                 <a id="slider-dialog-btn" class="hover:text-teal-300 fa-solid fa-sliders fa-lg"></a>
                 <a id="pause-play-btn" class="hover:text-teal-300 fa-solid fa-pause fa-lg click:opacity-100"></a>
             </div>
@@ -59,7 +59,7 @@
         </div>
 
         <div
-            class="flex flex-col md:flex-row px-20 justify-center items-center gap-10 text-center px-6 md:gap-10 md:text-left md:py-30 max-w-5xl mx-auto">
+            class="flex flex-col md:flex-row px-20 justify-center items-center gap-10 text-center px-6 md:gap-10 md:text-left py-30 max-w-5xl mx-auto">
             <img src="profile-pic.jpg" class="relative w-[260px] md:w-[280px] rounded-full border-5 border-teal-300">
         </div>
 
