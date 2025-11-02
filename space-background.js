@@ -119,6 +119,12 @@ const $slider_dialog = document.getElementById('slider-dialog')
 
 window.addEventListener("mousemove", handleMouseMove)
 window.addEventListener("resize", handleResize)
+window.addEventListener("load", () => {
+    const $main = document.getElementById('main-content')
+    $stars.classList.replace('disabled', 'enabled')
+    $canvas.classList.replace('disabled', 'enabled')
+    $main.classList.replace('disabled', 'enabled')
+})
 
 document.getElementById('pause-play-btn').onclick = (e) => {
     if (paused) {
@@ -137,11 +143,11 @@ document.getElementById('slider-dialog-btn').onclick = (e) => {
     console.log('dialog')
     if (slider_dialog_open) {
         slider_dialog_open = false
-        $slider_dialog.classList.replace('opacity-100', 'opacity-0')
+        $slider_dialog.classList.add('enabled', 'disabled')
     }
     else {
         slider_dialog_open = true
-        $slider_dialog.classList.replace('opacity-0', 'opacity-100')
+        $slider_dialog.classList.remove('disabled', 'enabled')
     }
 }
 
