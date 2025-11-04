@@ -76,3 +76,17 @@ body {
     pointer-events: n;
     opacity: 0;
 }
+
+::-webkit-scrollbar {
+  background-color: inherit;
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090a0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #999;
+  border-radius: 5px;
+}

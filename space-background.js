@@ -111,9 +111,12 @@ let animation_start = null
 let animation_pause_dt = 0
 
 let slider_dialog_open = false
+let message_box_expanded = false
 
 const $stars = document.getElementById('stars-wrapper')
 const $slider_dialog = document.getElementById('slider-dialog')
+// EMAIL FORM WIP
+// const $message_box = document.getElementById('message-box')
 
 // event listeners
 
@@ -161,6 +164,20 @@ document.getElementById('pixel-checkbox').onclick = (e) => {
         resizePseudoCanvas(1)
     }
 }
+// EMAIL FORM WIP
+// document.getElementById('email-message-expand-btn').onclick = (e) => {
+//     console.log(window)
+//     if (message_box_expanded) {
+//         message_box_expanded = false
+//         $message_box.classList.replace('h-150', 'h-30')
+//         e.target.classList.replace('fa-down-left-and-up-right-to-center', 'fa-up-right-and-down-left-from-center')
+//     }
+//     else {
+//         message_box_expanded = true
+//         $message_box.classList.replace('h-30', 'h-150')
+//         e.target.classList.replace('fa-up-right-and-down-left-from-center', 'fa-down-left-and-up-right-to-center')
+//     }
+// }
 
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
