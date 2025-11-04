@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    z-index: 999;
+    z-index: 0;
 }
 
 #stars-wrapper {
@@ -65,7 +65,7 @@ body {
     position: fixed;
     image-rendering: pixelated;
     pointer-events: none;
-    z-index: 0;
+    z-index: -1;
 }
 
 .enabled {

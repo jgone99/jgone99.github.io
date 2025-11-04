@@ -32,8 +32,9 @@
 
     <canvas id="background-canvas" class="disabled transition-opacity duration-1500 delay-1000"></canvas>
 
-    <div id="main-content" class="mx-auto disabled max-w-5xl duration-2000 transition-opacity delay-2000">
-        <nav class="w-full flex justify-center gap-5 md:gap-20 z-50 p-4 bg-gradient-to-r from-transparent via-[#0f0f0f]/90 to-transparent">
+    <div id="main-content" class="mx-auto z-50 disabled max-w-5xl duration-2000 transition-opacity delay-2000">
+        <nav
+            class="w-full flex justify-center gap-5 md:gap-20 z-50 p-4 bg-gradient-to-r from-transparent via-[#0f0f0f]/90 to-transparent">
             <a href="#about" class="hover:text-teal-300">About</a>
             <a href="#projects" class="hover:text-teal-300">Projects</a>
             <a href="#skills" class="hover:text-teal-300">Skills</a>
@@ -58,260 +59,263 @@
             </div>
         </div>
 
-        <div
-            class="flex flex-col md:flex-row px-20 justify-center items-center gap-10 text-center px-6 md:gap-10 md:text-left py-30 max-w-5xl mx-auto">
-            <img src="profile-pic.jpg" class="relative w-[260px] md:w-[280px] rounded-full border-5 border-teal-300">
-        </div>
-
-        <section id="about" class="max-w-3xl mx-auto md:pb-10" data-aos="fade-up">
-            <h2 class="text-3xl text-center mb-4">
-                About Me
-            </h2>
-            <div class="text-gray-400 text-center space-y-4">
-                <p>
-                    <strong>Hi, I'm Josh!</strong> I'm CS gradute, developer, and life-long learner currently looking
-                    for
-                    opportunities to contribute and grow.
-                </p>
-                <p>
-                    If I'm not learning a new framework or messing around in the Unity Engine,
-                    I'm probably working an a certification of some sort!
-                </p>
-                <p class="font-semibold text-[#F5F5F5]">
-                    Want to chat? Reach out! I'm friendly! 🙃 Contact info at the bottom
-                </p>
-
-            </div>
-        </section>
-
-        <section id="projects" class="p-10" data-aos="fade-up">
-            <h2 class="text-center text-3xl mb-8 font-semibold">
-                Projects
-            </h2>
-            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                <!--project card-->
+        <div>
+            <section id="about" class="max-w-3xl mx-auto md:pb-10" data-aos="fade-up">
                 <div
-                    class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
-                    <img src="lingobuddy.png" class="w-full mb-4 object-cover object-top h-48">
-                    <h3 class="text-2xl font-semibold mb-4">LingoBuddy</h3>
-
-                    <!--overlay-->
-                    <div
-                        class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 px-6 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
-
-                        <div class="flex-1 flex flex-col justify-center">
-                            <p class="text-gray-300 mb-4">
-                                A language learning app with account-based progress tracking,
-                                quizzes, and vocabulary games.
-                            </p>
-                            <p class="text-sm text-teal-300">
-                                React • Next.js • Node.js • Postgres • Tailwind • Google API
-                            </p>
-                        </div>
-
-                        <div class="flex gap-4 pb-10">
-                            <a href="https://lingo-buddy-40eca1483260.herokuapp.com/home-page" target="_blank"
-                                class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">Live
-                                Demo</a>
-
-                            <a href="https://github.com/jgone99/LingoBuddy" target="_blank"
-                                class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
-                                on GitHub</a>
-                        </div>
-
-                    </div>
+                    class="flex flex-col md:flex-row px-20 justify-center items-center text-center px-6 md:text-left py-30 max-w-5xl mx-auto">
+                    <img src="profile-pic.jpg"
+                        class="relative w-[260px] md:w-[280px] rounded-full border-5 border-teal-300">
                 </div>
+                <h2 class="text-3xl text-center mb-4">
+                    About Me
+                </h2>
+                <div class="text-gray-400 text-center space-y-4">
+                    <p>
+                        <strong>Hi, I'm Josh!</strong> I'm CS gradute, developer, and life-long learner currently
+                        looking
+                        for
+                        opportunities to contribute and grow.
+                    </p>
+                    <p>
+                        If I'm not learning a new framework or messing around in the Unity Engine,
+                        I'm probably working an a certification of some sort!
+                    </p>
+                    <p class="font-semibold text-[#F5F5F5]">
+                        Want to chat? Reach out! I'm friendly! 🙃 Contact info at the bottom
+                    </p>
 
-                <div
-                    class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
-                    <img src="chessgui.png" class="w-full mb-4 object-cover object-top h-48">
-                    <h3 class="text-2xl font-semibold mb-4">Bitboard Chess Game</h3>
-
-                    <!--overlay-->
-                    <div
-                        class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 px-6 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
-
-                        <div class="flex-1 flex flex-col justify-center">
-                            <p class="text-gray-300 mb-4">
-                                Desktop GUI-based chess game with full game logic and fast bitboard implementation ready
-                                for
-                                engine use.
-                            </p>
-                            <p class="text-sm text-teal-300">
-                                C++ • Qt
-                            </p>
-                        </div>
-
-                        <div class="flex pb-10">
-                            <a href="https://github.com/jgone99/BitboardChessGUI" target="_blank"
-                                class="px-4 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
-                                on GitHub</a>
-                        </div>
-                    </div>
                 </div>
+            </section>
 
-                <div
-                    class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
-                    <img src="CRUD.png" class="w-full mb-4 object-cover object-top h-48">
-                    <h3 class="text-2xl font-semibold mb-4">Postgres CRUD Web App</h3>
+            <section id="projects" class="p-10" data-aos="fade-up">
+                <h2 class="text-center text-3xl mb-8 font-semibold">
+                    Projects
+                </h2>
+                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                    <!--overlay-->
+                    <!--project card-->
                     <div
-                        class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                        class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
+                        <img src="lingobuddy.png" class="w-full mb-4 object-cover object-top h-48">
+                        <h3 class="text-2xl font-semibold mb-4">LingoBuddy</h3>
 
-                        <div class="flex-1 flex flex-col justify-center">
-                            <p class="text-gray-300 mb-4">
+                        <!--overlay-->
+                        <div
+                            class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 px-6 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
 
-                            </p>
-                            <p class="text-sm text-teal-300">
-                                React • Node.js • Express • Postgres • Supabase • Vercel
-                            </p>
-                        </div>
+                            <div class="flex-1 flex flex-col justify-center">
+                                <p class="text-gray-300 mb-4">
+                                    A language learning app with account-based progress tracking,
+                                    quizzes, and vocabulary games.
+                                </p>
+                                <p class="text-sm text-teal-300">
+                                    React • Next.js • Node.js • Postgres • Tailwind • Google API
+                                </p>
+                            </div>
 
-                        <div class="flex gap-4 pb-10">
-                            <a href="https://db-project-seven.vercel.app/" target="_blank"
-                                class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">Live
-                                Demo</a>
+                            <div class="flex gap-4 pb-10">
+                                <a href="https://lingo-buddy-40eca1483260.herokuapp.com/home-page" target="_blank"
+                                    class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">Live
+                                    Demo</a>
 
-                            <a href="https://github.com/jgone99/db-project" target="_blank"
-                                class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
-                                on GitHub</a>
+                                <a href="https://github.com/jgone99/LingoBuddy" target="_blank"
+                                    class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
+                                    on GitHub</a>
+                            </div>
+
                         </div>
                     </div>
 
-                </div>
-
-                <div
-                    class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
-                    <img src="portfolio.png" class="w-full mb-4 object-cover object-top h-48">
-                    <h3 class="text-2xl font-semibold mb-4">Portfolio Website</h3>
-
-                    <!--overlay-->
                     <div
-                        class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+                        class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
+                        <img src="chessgui.png" class="w-full mb-4 object-cover object-top h-48">
+                        <h3 class="text-2xl font-semibold mb-4">Bitboard Chess Game</h3>
 
-                        <div class="flex-1 flex flex-col justify-center">
-                            <p class="text-gray-300 mb-4">
-                                A pocket universe where I like to keep my stuff
-                            </p>
-                            <p class="text-sm text-teal-300">
-                                HTML • CSS • JavaScript • Tailwind • AOS.js
-                            </p>
+                        <!--overlay-->
+                        <div
+                            class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 px-6 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+
+                            <div class="flex-1 flex flex-col justify-center">
+                                <p class="text-gray-300 mb-4">
+                                    Desktop GUI-based chess game with full game logic and fast bitboard implementation
+                                    ready
+                                    for
+                                    engine use.
+                                </p>
+                                <p class="text-sm text-teal-300">
+                                    C++ • Qt
+                                </p>
+                            </div>
+
+                            <div class="flex pb-10">
+                                <a href="https://github.com/jgone99/BitboardChessGUI" target="_blank"
+                                    class="px-4 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
+                                    on GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
+                        <img src="CRUD.png" class="w-full mb-4 object-cover object-top h-48">
+                        <h3 class="text-2xl font-semibold mb-4">Postgres CRUD Web App</h3>
+
+                        <!--overlay-->
+                        <div
+                            class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+
+                            <div class="flex-1 flex flex-col justify-center">
+                                <p class="text-gray-300 mb-4">
+
+                                </p>
+                                <p class="text-sm text-teal-300">
+                                    React • Node.js • Express • Postgres • Supabase • Vercel
+                                </p>
+                            </div>
+
+                            <div class="flex gap-4 pb-10">
+                                <a href="https://db-project-seven.vercel.app/" target="_blank"
+                                    class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">Live
+                                    Demo</a>
+
+                                <a href="https://github.com/jgone99/db-project" target="_blank"
+                                    class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
+                                    on GitHub</a>
+                            </div>
                         </div>
 
-                        <div class="flex gap-4 pb-10">
-                            <a href="https://github.com/jgone99/portfolio" target="_blank"
-                                class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
-                                on GitHub</a>
+                    </div>
+
+                    <div
+                        class="group relative bg-neutral-800 overflow-hidden rounded-lg text-center hover:scale-[1.05] duration-350">
+                        <img src="portfolio.png" class="w-full mb-4 object-cover object-top h-48">
+                        <h3 class="text-2xl font-semibold mb-4">Portfolio Website</h3>
+
+                        <!--overlay-->
+                        <div
+                            class="absolute flex flex-col justify-between -inset-px bg-neutral-900/95 items-center text-center transition-all duration-300 opacity-0 group-hover:opacity-100">
+
+                            <div class="flex-1 flex flex-col justify-center">
+                                <p class="text-gray-300 mb-4">
+                                    A pocket universe where I like to keep my stuff
+                                </p>
+                                <p class="text-sm text-teal-300">
+                                    HTML • CSS • JavaScript • Tailwind • AOS.js
+                                </p>
+                            </div>
+
+                            <div class="flex gap-4 pb-10">
+                                <a href="https://github.com/jgone99/portfolio" target="_blank"
+                                    class="w-35 py-2 rounded-md border border-teal-300 text-sm hover:bg-teal-300 hover:text-black transition">View
+                                    on GitHub</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="skills" class="p-10" data-aos="fade-up">
-            <h2 class="text-center text-3xl mb-8 font-semibold">
-                Skills
-            </h2>
+            <section id="skills" class="p-10" data-aos="fade-up">
+                <h2 class="text-center text-3xl mb-8 font-semibold">
+                    Skills
+                </h2>
 
-            <div class="flex flex-wrap gap-3 text-sm font-bold justify-center">
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
-                        class="w-5 h-5" />
-                    <span>C/C++</span>
+                <div class="flex flex-wrap gap-3 text-sm font-bold justify-center">
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
+                            class="w-5 h-5" />
+                        <span>C/C++</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                            class="w-5 h-5" />
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+                            class="w-5 h-5" />
+                        <span>Python</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                            class="w-5 h-5" />
+                        <span>HTML/CSS</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+                            class="w-5 h-5" />
+                        <span>Java</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"
+                            class="w-5 h-5" />
+                        <span>C#</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+                            class="w-5 h-5" />
+                        <span>React</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+                            class="w-5 h-5" />
+                        <span>Node.js</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+                            class="w-5 h-5" />
+                        <span>Git</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+                            class="w-5 h-5" />
+                        <span>PostgreSQL</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+                            class="w-5 h-5" />
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/heroku/heroku-original.svg"
+                            class="w-5 h-5" />
+                        <span>Heroku</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg"
+                            class="w-5 h-5" />
+                        <span>Vercel</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg"
+                            class="w-5 h-5" />
+                        <span>Unity</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <span class="text-blue-400 font-light">∫∫dx</span>
+                        <span>Advanced Math</span>
+                    </div>
+                    <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
+                        <span>🧠 Problem Solving</span>
+                    </div>
                 </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
-                        class="w-5 h-5" />
-                    <span>JavaScript</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
-                        class="w-5 h-5" />
-                    <span>Python</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
-                        class="w-5 h-5" />
-                    <span>HTML/CSS</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
-                        class="w-5 h-5" />
-                    <span>Java</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"
-                        class="w-5 h-5" />
-                    <span>C#</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
-                        class="w-5 h-5" />
-                    <span>React</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
-                        class="w-5 h-5" />
-                    <span>Node.js</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
-                        class="w-5 h-5" />
-                    <span>Git</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
-                        class="w-5 h-5" />
-                    <span>PostgreSQL</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
-                        class="w-5 h-5" />
-                    <span>MongoDB</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/heroku/heroku-original.svg"
-                        class="w-5 h-5" />
-                    <span>Heroku</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg"
-                        class="w-5 h-5" />
-                    <span>Vercel</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg"
-                        class="w-5 h-5" />
-                    <span>Unity</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <span class="text-blue-400 font-light">∫∫dx</span>
-                    <span>Advanced Math</span>
-                </div>
-                <div class="flex items-center gap-1 bg-neutral-800 rounded-full px-4 py-2">
-                    <span>🧠 Problem Solving</span>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="contact" class="p-10" data-aos="fade-up">
-            <h2 class="text-center text-3xl mb-8 font-semibold">
-                Get in touch
-            </h2>
-            <div class="flex flex-1 flex-col gap-8 justify-center items-center px-4 py-2">
-                <div class="flex justify-center gap-5 text-4xl">
-                    <a href="https://www.linkedin.com/in/joshua-hinojo/" target="_blank">
-                        <i class="fa-brands fa-square-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/jgone99/" target="_blank">
-                        <i class="fa-brands fa-github"></i>
-                    </a>
-                </div>
+            <section id="contact" class="p-10" data-aos="fade-up">
+                <h2 class="text-center text-3xl mb-8 font-semibold">
+                    Get in touch
+                </h2>
+                <div class="flex flex-1 flex-col gap-8 justify-center items-center px-4 py-2">
+                    <div class="flex justify-center gap-5 text-4xl">
+                        <a href="https://www.linkedin.com/in/joshua-hinojo/" target="_blank">
+                            <i class="fa-brands fa-square-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/jgone99/" target="_blank">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                    </div>
 
-                <!--EMAIL FORM WIP-->
-                <!-- <span class="text-center text-2xl font-semibold">or</span>
+                    <!--EMAIL FORM WIP-->
+                    <!-- <span class="text-center text-2xl font-semibold">or</span>
                 <div id="email-form" class="flex flex-col w-3/4 gap-4 text-center rounded-lg font-medium">
                     <div class="flex flex-grow py-2 px-4 gap-2 rounded-2xl bg-neutral-800">
                         <input type="text" placeholder="Name" class="w-full border-none outline-none">
@@ -328,9 +332,10 @@
                         <a id="email-message-expand-btn" class=""><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
                     </div>
                 </div> -->
-            </div>
+                </div>
 
-        </section>
+            </section>
+        </div>
 
     </div>
 
