@@ -317,8 +317,7 @@ function shiftBackground() {
     const moveX = -xRatio
     const moveY = -yRatio
 
-    $stars1.style.transform = `translate(calc(${-xRatio * 60}px), calc(${-yRatio * 60}px))`
-    $stars2.style.transform = `translate(calc(${-xRatio * 90}px), calc(${-yRatio * 90}px))`
+    $stars2.style.transform = `translate(calc(${-xRatio * 60}px), calc(${-yRatio * 60}px))`
     $stars3.style.transform = `translate(calc(${-xRatio * 120}px), calc(${-yRatio * 120}px))`
 }
 
