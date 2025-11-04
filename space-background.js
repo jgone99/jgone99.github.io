@@ -114,6 +114,9 @@ let slider_dialog_open = false
 let message_box_expanded = false
 
 const $stars = document.getElementById('stars-wrapper')
+const $stars1 = document.getElementById('stars-1')
+const $stars2 = document.getElementById('stars-2')
+const $stars3 = document.getElementById('stars-3')
 const $slider_dialog = document.getElementById('slider-dialog')
 // EMAIL FORM WIP
 // const $message_box = document.getElementById('message-box')
@@ -217,10 +220,6 @@ function resizePseudoCanvas(scale) {
 }
 
 function generateStars(count1, count2, count3) {
-    const stars1 = document.getElementById('stars-1')
-    const stars2 = document.getElementById('stars-2')
-    const stars3 = document.getElementById('stars-3')
-
     const size = Math.max(SCREEN_W, SCREEN_H) * 1.1
     const shadows1 = []
     const shadows2 = []
@@ -250,9 +249,9 @@ function generateStars(count1, count2, count3) {
         shadows3.push(`${color} ${x}px ${y}px`)
     }
 
-    stars1.style.boxShadow = shadows1.join(', ')
-    stars2.style.boxShadow = shadows2.join(', ')
-    stars3.style.boxShadow = shadows3.join(', ')
+    $stars1.style.boxShadow = shadows1.join(', ')
+    $stars2.style.boxShadow = shadows2.join(', ')
+    $stars3.style.boxShadow = shadows3.join(', ')
 }
 
 function init() {
@@ -313,12 +312,14 @@ function updatePlanets(dt) {
 }
 
 function shiftBackground() {
-    const xRatio = cursor.x / pseudo_canvas_width - 0.5
-    const yRatio = cursor.y / pseudo_canvas_height - 0.5
-    const moveX = -xRatio * 30
-    const moveY = -yRatio * 30
+    const xRatio = ship_data.x / pseudo_canvas_width - 0.5
+    const yRatio = ship_data.y / pseudo_canvas_height - 0.5
+    const moveX = -xRatio
+    const moveY = -yRatio
 
-    $stars.style.transform = `translate(calc(${moveX}px), calc(${moveY}px))`
+    $stars1.style.transform = `translate(calc(${-xRatio * 60}px), calc(${-yRatio * 60}px))`
+    $stars2.style.transform = `translate(calc(${-xRatio * 90}px), calc(${-yRatio * 90}px))`
+    $stars3.style.transform = `translate(calc(${-xRatio * 120}px), calc(${-yRatio * 120}px))`
 }
 
 function updateShip(dt) {

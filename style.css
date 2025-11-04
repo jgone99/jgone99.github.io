@@ -24,6 +24,10 @@ body {
     z-index: -1;
 }
 
+#stars-wrapper > div {
+    transition: transform linear 1.5s, opacity 1.5s ease;
+}
+
 #stars-1 {
     position: absolute;
     top: 50%;
