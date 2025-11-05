@@ -23,47 +23,61 @@ const cursor = {
 const spaceship_sprite_url = 'spaceship.png'
 let spaceship_img = null
 
-const planet_texture_urls = ['planet0.png', 'planet1.png']
+const planet_texture_urls = ['planet0.png', 'planet1.png', 'planet2.png']
 const planet_textures = []
 
 const planet_data = {
     0: {
         size: 340 * CANVAS_SCALE,
-        size_mult: 0.3,
         x: pseudo_canvas_width * 0.15,
         y: pseudo_canvas_height * 0.4,
         x_mult: 0.15,
         y_mult: 0.4,
         tilt_deg: 25,
         offset: 0,
-        mill_per_frame: 70,
+        rot_speed: 10,
         dt: 0,
         filter: 0.55,
-        size_const: 340
+        size_const: 340,
+        frame_width: 378,
+        frame_height: 376
     },
     1: {
         size: 170 * CANVAS_SCALE,
-        size_mult: 0.15,
         x: pseudo_canvas_width * 0.5,
         y: pseudo_canvas_height * 0.7,
         x_mult: 0.5,
         y_mult: 0.7,
         tilt_deg: 35,
         offset: 0,
-        mill_per_frame: 30,
+        rot_speed: 20,
         dt: 0,
         filter: 0.7,
-        size_const: 170
+        size_const: 170,
+        frame_width: 378,
+        frame_height: 376
     },
     2: {
-        size: 200
+        size: 1020 * CANVAS_SCALE,
+        x: pseudo_canvas_width * 1.15,
+        y: pseudo_canvas_height * 0.8,
+        x_mult: 1.15,
+        y_mult: 0.8,
+        tilt_deg: -20,
+        offset: 0,
+        rot_speed: 10,
+        dt: 0,
+        filter: 0.35,
+        size_const: 1020,
+        frame_width: 1512,
+        frame_height: 1504
     },
-    3: {
-        size: 200
-    },
-    4: {
-        size: 200
-    },
+    // 3: {
+    //     size: 200
+    // },
+    // 4: {
+    //     size: 200
+    // },
 }
 
 const ship_data = {
@@ -302,13 +316,8 @@ function loadTextures() {
 
 function updatePlanets(dt) {
     Object.values(planet_data).forEach((planet, index) => {
-        planet.dt += dt
-        if (planet.dt * 1000 > planet.mill_per_frame) {
-            planet.offset = (planet.offset + 1) % (planet_textures[index].width - planet_frame_width)
-            planet.dt = 0
-        }
+        planet.offset = (planet.offset + planet.rot_speed * dt) % (planet_textures[index].width - planet.frame_width)
     })
-
 }
 
 function shiftBackground() {
@@ -342,19 +351,7 @@ function drawPlanets() {
 
     planet_textures.forEach((texture, index) => {
         ctx.save()
-        const { x, y, size, tilt_deg, offset, filter } = planet_data[index]
-
-        // const lowRes = document.createElement('canvas');
-        // const lowCtx = lowRes.getContext('2d');
-        // const sizen = Math.ceil(size / 4);
-
-        // lowRes.width = sizen;
-        // lowRes.height = sizen;
-
-        // lowCtx.fillStyle = 'black';
-        // lowCtx.beginPath();
-        // lowCtx.arc(sizen / 2, sizen / 2, sizen / 2, 0, Math.PI * 2);
-        // lowCtx.fill();
+        const { x, y, size, tilt_deg, offset, filter, frame_width, frame_height } = planet_data[index]
 
         ctx.translate(x, y)
         ctx.rotate(tilt_deg * Math.PI / 180)
@@ -367,8 +364,8 @@ function drawPlanets() {
             texture,
             offset,
             0,
-            planet_frame_width,
-            planet_frame_height,
+            frame_width,
+            frame_height,
             -size / 2,
             -size / 2,
             size,
@@ -421,6 +418,8 @@ function handleResize(e) {
     console.log('resize')
     WINDOW_W = window.innerWidth
     WINDOW_H = window.innerHeight
+    const prev_width = pseudo_canvas_width
+    const prev_height = pseudo_canvas_height
     pseudo_canvas_width = WINDOW_W * CANVAS_SCALE
     pseudo_canvas_height = WINDOW_H * CANVAS_SCALE
     $canvas.width = pseudo_canvas_width
@@ -433,6 +432,10 @@ function handleResize(e) {
         planet.x = pseudo_canvas_width * planet.x_mult
         planet.y = pseudo_canvas_height * planet.y_mult
     })
+
+    if(paused) {
+        drawAll()
+    }
 }
 
 function rotateShip(dt, dx, dy) {
@@ -500,6 +503,7 @@ function checkBounds() {
 }
 
 function startAnimation() {
+    if (paused) return
     if (!animation_id) {
         last_timestamp = performance.now()
         animation_id = requestAnimationFrame(animateBackground)
@@ -524,6 +528,6 @@ function animateBackground(timestamp) {
     updateShip(dt)
     updateShipFrame(dt)
     drawAll()
-
+    
     animation_id = requestAnimationFrame(animateBackground)
 }
