@@ -3,7 +3,9 @@
 const SCREEN_W = screen.width
 const SCREEN_H = screen.height
 
-let CANVAS_SCALE = 0.25
+const min_device_width = 768
+
+let CANVAS_SCALE = 1
 
 let WINDOW_W = window.innerWidth
 let WINDOW_H = window.innerHeight
@@ -28,47 +30,56 @@ const planet_textures = []
 
 const planet_data = {
     0: {
-        size: 340 * CANVAS_SCALE,
+        size: null,
         x: pseudo_canvas_width * 0.15,
         y: pseudo_canvas_height * 0.4,
         x_mult: 0.15,
         y_mult: 0.4,
+        x_mult_min: 0.05,
+        y_mult_min: 0.2,
         tilt_deg: 25,
         offset: 0,
         rot_speed: 10,
         dt: 0,
         filter: 0.55,
         size_const: 340,
+        size_const_min: 170,
         frame_width: 378,
         frame_height: 376
     },
     1: {
-        size: 170 * CANVAS_SCALE,
+        size: null,
         x: pseudo_canvas_width * 0.5,
         y: pseudo_canvas_height * 0.7,
         x_mult: 0.5,
         y_mult: 0.7,
+        x_mult_min: 0.5,
+        y_mult_min: 0.7,
         tilt_deg: 35,
         offset: 0,
         rot_speed: 20,
         dt: 0,
         filter: 0.7,
         size_const: 170,
+        size_const_min: 85,
         frame_width: 378,
         frame_height: 376
     },
     2: {
-        size: 1020 * CANVAS_SCALE,
+        size: null,
         x: pseudo_canvas_width * 1.15,
         y: pseudo_canvas_height * 0.8,
         x_mult: 1.15,
         y_mult: 0.8,
+        x_mult_min: 1.10,
+        y_mult_min: 1,
         tilt_deg: -20,
         offset: 0,
         rot_speed: 10,
         dt: 0,
         filter: 0.35,
-        size_const: 1020,
+        size_const: 820,
+        size_const_min: 410,
         frame_width: 1512,
         frame_height: 1504
     },
@@ -93,10 +104,6 @@ const ship_data = {
     damp_dist_cost: 20
 }
 
-const planet_frame_width = 378
-const planet_frame_height = 376
-
-let planet_dt = 0
 let ship_dt = 0
 let last_timestamp = null
 let texture_offset = 0
@@ -107,17 +114,10 @@ const ship_frame_width = 850
 const ship_frame_height = 850
 const total_rotation_frames = 24
 const total_thrust_frames = 6
-let rotation_frame = 0
+let ship_rotation_frame = 0
 let thrust_frame = 0
 let ship_frame_rate = 80
 let prev_ship_frame_time = 0
-const max_ticks = 10
-let speed_ticks = 5
-
-const LEFT_BOUND = -ship_data.size
-const RIGHT_BOUND = WINDOW_W + ship_data.size
-const TOP_BOUND = -ship_data.size
-const BOTTOM_BOUND = WINDOW_H + ship_data.size
 
 let paused = false
 let animation_id = null
@@ -125,15 +125,12 @@ let animation_start = null
 let animation_pause_dt = 0
 
 let slider_dialog_open = false
-let message_box_expanded = false
 
 const $stars = document.getElementById('stars-wrapper')
 const $stars1 = document.getElementById('stars-1')
 const $stars2 = document.getElementById('stars-2')
 const $stars3 = document.getElementById('stars-3')
 const $slider_dialog = document.getElementById('slider-dialog')
-// EMAIL FORM WIP
-// const $message_box = document.getElementById('message-box')
 
 // event listeners
 
@@ -142,10 +139,8 @@ window.addEventListener("resize", handleResize)
 window.addEventListener("blur", stopAnimation);
 window.addEventListener("focus", startAnimation);
 window.addEventListener("load", () => {
-    const $main = document.getElementById('main-content')
     $stars.classList.replace('disabled', 'enabled')
     $canvas.classList.replace('disabled', 'enabled')
-    $main.classList.replace('disabled', 'enabled')
 })
 
 document.getElementById('pause-play-btn').onclick = (e) => {
@@ -162,7 +157,6 @@ document.getElementById('pause-play-btn').onclick = (e) => {
 }
 
 document.getElementById('slider-dialog-btn').onclick = (e) => {
-    console.log('dialog')
     if (slider_dialog_open) {
         slider_dialog_open = false
         $slider_dialog.classList.add('enabled', 'disabled')
@@ -181,20 +175,6 @@ document.getElementById('pixel-checkbox').onclick = (e) => {
         resizePseudoCanvas(1)
     }
 }
-// EMAIL FORM WIP
-// document.getElementById('email-message-expand-btn').onclick = (e) => {
-//     console.log(window)
-//     if (message_box_expanded) {
-//         message_box_expanded = false
-//         $message_box.classList.replace('h-150', 'h-30')
-//         e.target.classList.replace('fa-down-left-and-up-right-to-center', 'fa-up-right-and-down-left-from-center')
-//     }
-//     else {
-//         message_box_expanded = true
-//         $message_box.classList.replace('h-30', 'h-150')
-//         e.target.classList.replace('fa-up-right-and-down-left-from-center', 'fa-down-left-and-up-right-to-center')
-//     }
-// }
 
 document.addEventListener("visibilitychange", () => {
     if (document.hidden) {
@@ -210,7 +190,6 @@ init()
 
 
 // function definitions
-
 function resizePseudoCanvas(scale) {
     const scale_ratio = scale / CANVAS_SCALE
     cursor.x *= scale_ratio
@@ -221,10 +200,12 @@ function resizePseudoCanvas(scale) {
     $canvas.width = pseudo_canvas_width
     $canvas.height = pseudo_canvas_height
     ctx.imageSmoothingEnabled = false
+
+    const is_min_width = WINDOW_W > min_device_width
     Object.values(planet_data).forEach((planet) => {
-        planet.size = planet.size_const * CANVAS_SCALE
-        planet.x = pseudo_canvas_width * planet.x_mult
-        planet.y = pseudo_canvas_height * planet.y_mult
+        planet.size = CANVAS_SCALE * (is_min_width ? planet.size_const : planet.size_const_min)
+        planet.x = pseudo_canvas_width * (is_min_width ? planet.x_mult : planet.x_mult_min)
+        planet.y = pseudo_canvas_height * (is_min_width ? planet.y_mult :planet.y_mult_min)
     })
     ship_data.size = ship_data.size_const * CANVAS_SCALE
     ship_data.x *= scale_ratio
@@ -278,6 +259,14 @@ function init() {
     $canvas.style.width = WINDOW_W + 'px'
     $canvas.style.height = WINDOW_H + 'px'
     ctx.imageSmoothingEnabled = false
+
+    const is_min_width = WINDOW_W > min_device_width
+    Object.values(planet_data).forEach((planet) => {
+        planet.size = CANVAS_SCALE * (is_min_width ? planet.size_const : planet.size_const_min)
+        planet.x = pseudo_canvas_width * (is_min_width ? planet.x_mult : planet.x_mult_min)
+        planet.y = pseudo_canvas_height * (is_min_width ? planet.y_mult :planet.y_mult_min)
+    })
+
     initStars()
     loadTextures().then(startAnimation)
 }
@@ -342,7 +331,7 @@ function updateShipFrame(dt) {
     thrust_frame = total_thrust_frames - parseInt((total_thrust_frames - 1) * (ship_data.speed / ship_data.max_speed)) - 1
 
     if (ship_dt * 1000 > ship_frame_rate) {
-        rotation_frame = (rotation_frame + (ship_data.speed / ship_data.max_speed > 0.1 ? 1 : 0)) % total_rotation_frames
+        ship_rotation_frame = (ship_rotation_frame + (ship_data.speed / ship_data.max_speed > 0.1 ? 1 : 0)) % total_rotation_frames
         ship_dt = 0
     }
 }
@@ -380,7 +369,7 @@ function drawPlanets() {
 
 function drawShipSprite() {
     ctx.save()
-    const frame_x = rotation_frame * ship_frame_width
+    const frame_x = ship_rotation_frame * ship_frame_width
     const frame_y = thrust_frame * ship_frame_width
 
     const { x, y, angle, size } = ship_data
@@ -415,7 +404,6 @@ function handleMouseMove(e) {
 }
 
 function handleResize(e) {
-    console.log('resize')
     WINDOW_W = window.innerWidth
     WINDOW_H = window.innerHeight
     const prev_width = pseudo_canvas_width
@@ -428,12 +416,14 @@ function handleResize(e) {
     $canvas.style.height = WINDOW_H + 'px'
     ctx.imageSmoothingEnabled = false
 
+    const is_min_width = WINDOW_W > min_device_width
     Object.values(planet_data).forEach((planet) => {
-        planet.x = pseudo_canvas_width * planet.x_mult
-        planet.y = pseudo_canvas_height * planet.y_mult
+        planet.size = CANVAS_SCALE * (is_min_width ? planet.size_const : planet.size_const_min)
+        planet.x = pseudo_canvas_width * (is_min_width ? planet.x_mult : planet.x_mult_min)
+        planet.y = pseudo_canvas_height * (is_min_width ? planet.y_mult : planet.y_mult_min)
     })
 
-    if(paused) {
+    if(animation_id === null) {
         drawAll()
     }
 }
@@ -461,8 +451,6 @@ function moveForward(dt, dx, dy) {
     ship_data.y += Math.sin(rad) * translation_speed * dt
     ship_data.speed = translation_speed
 
-    //checkBounds()
-
     // if (distance(ship_state.x, ship_state.y, prev_ship_x, prev_ship_y) >= DASH_SPACING) {
     //     const $dash = document.createElement("div")
     //     $dash.className = "dash"
@@ -482,24 +470,6 @@ function easeInOutQuad(t) {
     return t < 0.5
         ? t * (2 - t)
         : -1 + (4 - 2 * t) * t;
-}
-
-function checkBounds() {
-    const shipCenterX = ship_data.x + ship_data.size / 2
-    const shipCenterY = ship_data.y + ship_data.size / 2
-
-    if (shipCenterX <= LEFT_BOUND) {
-        setShipCenterX(LEFT_BOUND + 1)
-    }
-    else if (shipCenterX >= RIGHT_BOUND) {
-        setShipCenterX(RIGHT_BOUND - 1)
-    }
-    if (shipCenterY <= TOP_BOUND) {
-        setShipCenterY(TOP_BOUND + 1)
-    }
-    else if (shipCenterY >= BOTTOM_BOUND) {
-        setShipCenterY(BOTTOM_BOUND - 1)
-    }
 }
 
 function startAnimation() {
@@ -523,7 +493,6 @@ function animateBackground(timestamp) {
 
     const dt = (timestamp - last_timestamp) / 1000
     last_timestamp = timestamp
-    shiftBackground()
     updatePlanets(dt)
     updateShip(dt)
     updateShipFrame(dt)

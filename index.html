@@ -54,7 +54,7 @@
                     <input type="range"></span>
                 <span class="flex gap-5">
                     <label>pixelated</label>
-                    <input class="flex flex-1 scale-75" id="pixel-checkbox" type="checkbox" checked></span>
+                    <input class="flex flex-1 scale-75" id="pixel-checkbox" type="checkbox"></span>
 
             </div>
         </div>
@@ -304,7 +304,7 @@
                 <h2 class="text-center text-3xl mb-8 font-semibold">
                     Get in touch
                 </h2>
-                <div class="flex flex-1 flex-col gap-8 justify-center items-center px-4 py-2">
+                <div class="flex flex-col gap-8 justify-evenly items-center py-2">
                     <div class="flex justify-center gap-5 text-4xl">
                         <a href="https://www.linkedin.com/in/joshua-hinojo/" target="_blank">
                             <i class="fa-brands fa-square-linkedin"></i>
@@ -316,30 +316,48 @@
 
                     <!--EMAIL FORM WIP-->
                     <!-- <span class="text-center text-2xl font-semibold">or</span>
-                <div id="email-form" class="flex flex-col w-3/4 gap-4 text-center rounded-lg font-medium">
-                    <div class="flex flex-grow py-2 px-4 gap-2 rounded-2xl bg-neutral-800">
-                        <input type="text" placeholder="Name" class="w-full border-none outline-none">
-                    </div>
-                    <div class="flex flex-grow py-2 px-4 gap-2 rounded-2xl bg-neutral-800">
-                        <input type="text" placeholder="Email" class="w-full border-none outline-none">
-                    </div>
-                    <div class="flex flex-grow py-2 px-4 gap-2 rounded-2xl bg-neutral-800">
-                        <input type="text" placeholder="Subject" class="w-full border-none outline-none">
-                    </div>
-                    <div id="message-box" class="flex flex-grow flex-col items-end py-2 px-4 gap-2 h-30 rounded-2xl bg-neutral-800 transition-[height] duration-200">
-                        <textarea rows="150" cols="50"  placeholder="Message"
-                            class="w-full border-none outline-none resize-none"></textarea>
-                        <a id="email-message-expand-btn" class=""><i class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
-                    </div>
-                </div> -->
-                </div>
 
+                    <form id="contact-form"
+                        class="flex flex-col grow md:w-3/4 px-10 w-full items-center rounded-lg font-medium gap-4">
+                        <div class="flex flex-col grow w-full md:flex-row gap-4">
+                            <div class="flex py-2 px-4 w-full md:w-2/5 flex-none rounded-2xl bg-neutral-800">
+                                <input name="name" type="text" required placeholder="Name"
+                                    class="w-full border-none outline-none">
+                            </div>
+                            <div class="flex grow py-2 px-4 rounded-2xl bg-neutral-800">
+                                <input name="email" type="email" required placeholder="Email"
+                                    class="w-full border-none outline-none">
+                            </div>
+                        </div>
+
+                        <div class="flex w-full py-2 px-4 rounded-2xl bg-neutral-800">
+                            <input name="subject" type="text" placeholder="Subject"
+                                class="w-full border-none outline-none">
+                        </div>
+                        <div id="message-box"
+                            class="flex flex-col w-full items-end py-2 px-4 gap-2 h-30 rounded-2xl bg-neutral-800 transition-[height] duration-200">
+                            <textarea name="message" rows="150" cols="50" required placeholder="Message"
+                                class="w-full border-none outline-none resize-none"></textarea>
+                            <a id="email-message-expand-btn" class=""><i
+                                    class="fa-solid fa-up-right-and-down-left-from-center"></i></a>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <i id="email-send-spinner"
+                                class="absolute flex flex-1 opacity-0 pointer-events-none fa-solid fa-spinner text-black text-xl font-bold"></i>
+                            <div
+                                class="rounded-2xl border border-teal-300 text-sm hover:bg-teal-300 text-white hover:text-black transition">
+                                <button type="submit" class="px-4 py-2 w-25 py-2">Send</button>
+                            </div>
+                        </div>
+                    </form> -->
+                </div>
             </section>
         </div>
 
     </div>
 
     <script src="space-background.js"></script>
+    <script src="interactions.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
